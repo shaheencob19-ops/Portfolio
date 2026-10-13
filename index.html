@@ -1,294 +1,606 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaheen Haque | Customer Success & Tech Support</title>
+    <title>SHAHEEN.HAQUE // CYBERPUNK 2050 SUPPORT & EXPEDITION OS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cpbg: '#020205',
+                        cnyellow: '#fee12b',
+                        cncyan: '#00f0ff',
+                        cnpink: '#ff0055',
+                        cnpurple: '#7000ff',
+                        cngreen: '#39ff14'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
-        
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #ededed;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .light-mode {
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --border-color: rgba(0, 0, 0, 0.1);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            scroll-behavior: smooth;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #020205;
+            color: #d1d5db;
+            overflow-x: hidden;
         }
 
-        .glass-card {
-            background: var(--card-bg);
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .font-mono-tech {
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Cyberpunk 2050 Glitch Grids & Scanlines */
+        .cyber-grid-2050 {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(254, 225, 43, 0.04) 1px, transparent 1px);
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), linear-gradient(90deg, rgba(255, 0, 85, 0.03), rgba(0, 240, 255, 0.01), rgba(112, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.7;
+        }
+
+        /* Cyberpunk 2050 Asymmetric Panels */
+        .cp-panel {
+            background: rgba(8, 8, 16, 0.85);
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.12), inset 0 0 15px rgba(0, 240, 255, 0.04);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .glass-card:hover {
-            border-color: #6366f1;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
+        .cp-panel:hover {
+            border-color: #fee12b;
+            box-shadow: 0 0 35px rgba(254, 225, 43, 0.25), inset 0 0 20px rgba(254, 225, 43, 0.06);
+            transform: translateY(-2px);
         }
 
-        .gradient-text {
-            background: linear-gradient(90deg, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .cp-panel-pink {
+            background: rgba(16, 4, 12, 0.85);
+            border: 2px solid rgba(255, 0, 85, 0.4);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.15);
         }
 
-        /* Infinite Marquee */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-200px * 6)); }
+        .cp-panel-pink:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
         }
 
-        .marquee-wrapper {
-            display: flex;
-            width: calc(200px * 12);
-            animation: scroll 25s linear infinite;
+        /* Diagonal Corner Cuts */
+        .clip-cp {
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
         }
 
-        .marquee-item {
-            width: 200px;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+        .clip-btn {
+            clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+        }
+
+        /* Neon Glows */
+        .neon-cyan { text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4); }
+        .neon-yellow { text-shadow: 0 0 10px rgba(254, 225, 43, 0.8), 0 0 20px rgba(254, 225, 43, 0.4); }
+        .neon-pink { text-shadow: 0 0 10px rgba(255, 0, 85, 0.8), 0 0 20px rgba(255, 0, 85, 0.4); }
+
+        /* Floating Hologram */
+        @keyframes cp-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+        .animate-cp-float {
+            animation: cp-float 4s ease-in-out infinite;
+        }
+
+        /* Glitch Border Animation */
+        @keyframes border-glitch {
+            0%, 100% { border-color: #00f0ff; }
+            33% { border-color: #fee12b; }
+            66% { border-color: #ff0055; }
+        }
+        .glitch-border {
+            animation: border-glitch 5s infinite;
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="relative min-h-screen cyber-grid-2050 selection:bg-[#fee12b] selection:text-black pb-32">
 
-    <nav class="max-w-6xl mx-auto flex justify-between items-center mb-16 px-4">
-        <div class="text-xl font-bold tracking-tighter uppercase">Shaheen Haque</div>
-        
+    <div class="scanlines"></div>
+
+    <!-- CYBERPUNK 2050 TOP HUD BAR -->
+    <nav class="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 sticky top-0 z-50 bg-[#020205]/95 backdrop-blur-md border-b-2 border-[#00f0ff]/40">
+        <div class="flex items-center gap-3">
+            <div class="w-3.5 h-3.5 bg-[#fee12b] animate-ping"></div>
+            <span class="font-orbitron font-black text-sm tracking-widest text-[#fee12b] neon-yellow">CP2050://SHAHEEN.SYS</span>
+            <span class="hidden sm:inline bg-[#00f0ff]/10 text-[#00f0ff] text-[10px] px-2 py-0.5 border border-[#00f0ff]/40 font-mono-tech">NET_STATUS: ACTIVE</span>
+        </div>
+
         <div class="flex items-center gap-6">
-            <div class="hidden md:flex gap-8 text-sm font-medium opacity-70">
-                <a href="#research" class="hover:text-indigo-400 transition">Research</a>
-                <a href="#experience" class="hover:text-indigo-400 transition">Experience</a>
-                <a href="https://github.com/Shaheen-704" target="_blank" class="hover:text-indigo-400">GitHub</a>
-                <a href="https://www.linkedin.com/in/shaheen-haque-97ba901a5/" target="_blank" class="hover:text-indigo-400">LinkedIn</a>
+            <div class="hidden md:flex gap-6 text-xs font-mono-tech tracking-wider uppercase font-bold">
+                <a href="#arena" class="text-gray-300 hover:text-[#ff0055] transition flex items-center gap-1"><i data-lucide="crosshair" class="w-3.5 h-3.5 text-[#ff0055]"></i> Triage Arena</a>
+                <a href="#expedition" class="text-gray-300 hover:text-[#fee12b] transition flex items-center gap-1"><i data-lucide="compass" class="w-3.5 h-3.5 text-[#fee12b]"></i> Travel Radar</a>
+                <a href="#arsenal" class="text-gray-300 hover:text-[#00f0ff] transition flex items-center gap-1"><i data-lucide="cpu" class="w-3.5 h-3.5 text-[#00f0ff]"></i> Cyber Arsenal</a>
+                <a href="#logs" class="text-gray-300 hover:text-[#7000ff] transition flex items-center gap-1"><i data-lucide="database" class="w-3.5 h-3.5 text-[#7000ff]"></i> Mission Logs</a>
+                <a href="https://github.com/Shaheen-704" target="_blank" class="text-[#00f0ff] hover:text-[#fee12b] transition flex items-center gap-1"><i data-lucide="github" class="w-3.5 h-3.5 text-[#00f0ff]"></i> GitHub</a>
             </div>
 
-            <button id="theme-toggle" class="p-2 rounded-full glass-card hover:bg-indigo-500/20 transition">
-                <i data-lucide="moon" id="theme-icon" class="w-5 h-5"></i>
+            <button id="sound-btn" onclick="toggleCpAudio()" class="clip-btn bg-[#fee12b]/20 text-[#fee12b] px-3.5 py-1.5 text-xs border border-[#fee12b]/60 hover:bg-[#fee12b]/40 transition font-mono-tech flex items-center gap-2 font-bold">
+                <i data-lucide="volume-x" id="sound-icon" class="w-3.5 h-3.5"></i> <span id="sound-text">AUDIO: OFF</span>
             </button>
-
-            <a href="Shaheen Haque - CS.pdf" download class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition flex items-center gap-2">
-                <i data-lucide="download" class="w-4 h-4"></i> Resume
-            </a>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto space-y-24">
-        
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="lg:col-span-2 glass-card p-10 rounded-3xl flex flex-col justify-center">
-                <span class="text-indigo-400 font-mono mb-4 uppercase tracking-widest text-sm">Customer Success & Operations</span>
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                    Driving <span class="gradient-text">Onboarding Success</span> & Technical Product Support.
+    <main class="max-w-7xl mx-auto space-y-20 px-4 md:px-8 py-10">
+
+        <!-- HERO SECTION: 2050 COMMAND -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            <div class="lg:col-span-2 cp-panel clip-cp p-8 md:p-12 relative overflow-hidden glitch-border">
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-[#00f0ff]/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <span class="inline-flex items-center gap-2 text-xs font-mono-tech text-[#fee12b] uppercase tracking-widest bg-[#fee12b]/10 px-3 py-1 border border-[#fee12b]/40 mb-6 font-bold">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-[#fee12b]"></i> Senior Product Support Specialist // Incident Commander
+                </span>
+
+                <h1 class="font-orbitron text-3xl md:text-5xl lg:text-6xl font-black mb-6 leading-none tracking-tight text-white">
+                    TRIAGING <span class="text-[#00f0ff] neon-cyan">P0-P4 INCIDENTS</span>.<br>
+                    READY FOR <span class="text-[#ff0055] neon-pink">GLOBAL EXPEDITIONS</span>.
                 </h1>
-                <p class="text-lg opacity-60 max-w-xl leading-relaxed">
-                    Technical Onboarding and Support Analysis Specialist with 3+ years in operations. Expert in incident management, root cause analysis, and driving 100% SLA adherence across complex data pipelines.
+
+                <p class="text-base text-gray-300 leading-relaxed max-w-2xl font-mono-tech mb-8">
+                    Operating real-time merchant infrastructure for 45,000+ endpoints at UrbanPiper. Expert in REST APIs, webhook failure isolation, custom Kibana/Datadog grids, and SLA defense. Preparing next-gen nomad travel exploration protocols across global sectors!
                 </p>
-                <div class="mt-10 flex flex-wrap gap-4">
-                    <a href="mailto:shaheen.cob19@gmail.com" class="bg-indigo-600 text-white px-8 py-4 rounded-full font-bold hover:bg-indigo-500 transition">Contact Me</a>
-                    <a href="#experience" class="glass-card px-8 py-4 rounded-full font-semibold hover:bg-indigo-500/10 text-center">Professional Journey</a>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#arena" class="clip-btn bg-[#ff0055] hover:bg-[#ff0055]/80 text-white font-orbitron font-black text-xs uppercase px-6 py-4 transition flex items-center gap-2 shadow-[0_0_20px_rgba(255,0,85,0.6)]">
+                        <i data-lucide="gamepad-2" class="w-4 h-4"></i> Play Triage Simulator
+                    </a>
+                    <a href="#expedition" class="clip-btn bg-[#fee12b]/20 hover:bg-[#fee12b]/30 text-[#fee12b] border border-[#fee12b]/60 font-orbitron font-bold text-xs uppercase px-6 py-4 transition flex items-center gap-2">
+                        <i data-lucide="globe" class="w-4 h-4"></i> View Travel Deck [Incoming]
+                    </a>
+                    <a href="https://github.com/Shaheen-704" target="_blank" class="clip-btn bg-[#00f0ff]/20 hover:bg-[#00f0ff]/30 text-[#00f0ff] border border-[#00f0ff]/60 font-orbitron font-bold text-xs uppercase px-6 py-4 transition flex items-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4"></i> GitHub Code Base
+                    </a>
                 </div>
             </div>
-            
-            <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
-                <div class="space-y-4">
-                    <h3 class="text-sm font-mono text-indigo-400 uppercase tracking-widest mb-4">Education</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm font-bold">Bachelor of Computer Applications (BCA)</p>
-                            <p class="text-xs opacity-60">University of Pune | 2018 - 2021</p>
-                        </div>
-                        <div class="pt-4 border-t border-indigo-500/20">
-                            <h3 class="text-sm font-mono text-indigo-400 uppercase tracking-widest mb-4">Core Competencies</h3>
-                            <ul class="space-y-3">
-                                <li class="flex items-center gap-3 text-sm">
-                                    <i data-lucide="check-circle" class="w-4 h-4 text-indigo-400"></i> Enterprise Onboarding
-                                </li>
-                                <li class="flex items-center gap-3 text-sm">
-                                    <i data-lucide="shield-check" class="w-4 h-4 text-indigo-400"></i> SLA Management
-                                </li>
-                                <li class="flex items-center gap-3 text-sm">
-                                    <i data-lucide="database" class="w-4 h-4 text-indigo-400"></i> Data Analysis
-                                </li>
-                            </ul>
-                        </div>
+
+            <!-- HOLOGRAM AVATAR & METRICS HUD -->
+            <div class="cp-panel cp-panel-pink clip-cp p-6 flex flex-col justify-between space-y-6 text-center relative">
+                <div class="relative inline-block mx-auto">
+                    <div class="w-36 h-36 mx-auto rounded-none border-2 border-[#ff0055] bg-gradient-to-b from-[#200010] via-[#080208] to-[#040004] flex items-center justify-center p-3 animate-cp-float shadow-[0_0_25px_rgba(255,0,85,0.4)]">
+                        <i data-lucide="cpu" class="w-16 h-16 text-[#fee12b]"></i>
+                    </div>
+                    <span class="absolute bottom-1 right-1 px-2 py-0.5 bg-[#fee12b] text-black font-orbitron font-extrabold text-[9px] uppercase tracking-wider">
+                        UNIT 2050
+                    </span>
+                </div>
+
+                <div>
+                    <h3 class="font-orbitron font-black text-lg text-white tracking-wider neon-yellow">SHAHEEN HAQUE</h3>
+                    <p class="text-xs text-[#00f0ff] font-mono-tech mt-1">Base: Bengaluru ➔ Target: Earth</p>
+                </div>
+
+                <div class="space-y-2 text-left font-mono-tech text-xs bg-black/80 p-4 border border-[#ff0055]/40">
+                    <div class="flex justify-between border-b border-[#ff0055]/20 pb-1">
+                        <span class="text-gray-400">Merchants Managed:</span>
+                        <span class="text-[#00f0ff] font-bold">45,000+</span>
+                    </div>
+                    <div class="flex justify-between border-b border-[#ff0055]/20 pb-1">
+                        <span class="text-gray-400">SLA Adherence:</span>
+                        <span class="text-[#39ff14] font-bold">100% Target</span>
+                    </div>
+                    <div class="flex justify-between border-b border-[#ff0055]/20 pb-1">
+                        <span class="text-gray-400">Ticket Deflection:</span>
+                        <span class="text-[#ff0055] font-bold">-40% Achieved</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Expedition Mode:</span>
+                        <span class="text-[#fee12b] font-bold animate-pulse">Initializing...</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="stack" class="overflow-hidden py-10 relative">
-            <h2 class="text-2xl font-bold mb-10 text-center opacity-70 uppercase tracking-[0.2em]">Technology Stack</h2>
-            <div class="marquee-wrapper">
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=python" class="w-12 h-12" alt="Python"><span>Python</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=postgres" class="w-12 h-12" alt="SQL"><span>PostgreSQL</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=aws" class="w-12 h-12" alt="AWS"><span>AWS</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=mongodb" class="w-12 h-12" alt="MongoDB"><span>MongoDB</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=postman" class="w-12 h-12" alt="Postman"><span>Postman</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=github" class="w-12 h-12" alt="GitHub"><span>GitHub</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=python" class="w-12 h-12" alt="Python"><span>Python</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=postgres" class="w-12 h-12" alt="SQL"><span>PostgreSQL</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=aws" class="w-12 h-12" alt="AWS"><span>AWS</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=mongodb" class="w-12 h-12" alt="MongoDB"><span>MongoDB</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=postman" class="w-12 h-12" alt="Postman"><span>Postman</span></div>
-                <div class="marquee-item"><img src="https://skillicons.dev/icons?i=github" class="w-12 h-12" alt="GitHub"><span>GitHub</span></div>
+        <!-- INTERACTIVE MINI-GAME: CYBERPUNK 2050 INCIDENT ARENA -->
+        <section id="arena" class="cp-panel clip-cp p-6 md:p-10 relative">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b-2 border-[#00f0ff]/30 pb-6 gap-4">
+                <div>
+                    <span class="font-orbitron text-xs text-[#ff0055] uppercase tracking-widest">// SIMULATION PROTOCOL 2050</span>
+                    <h2 class="font-orbitron text-2xl md:text-3xl font-black text-white mt-1 neon-cyan">INCIDENT TRIAGE ARENA</h2>
+                    <p class="text-xs text-gray-400 font-mono-tech mt-1">Resolve high-stakes webhook and API failures before system overload occurs.</p>
+                </div>
+                <div class="flex items-center gap-4 bg-black/80 px-4 py-2 border-2 border-[#ff0055]/50 font-mono-tech text-xs self-start">
+                    <span>SECTOR HP: <strong id="sector-hp" class="text-[#ff0055] font-bold">100%</strong></span>
+                    <span>SCORE: <strong id="game-score" class="text-[#fee12b] font-bold">0 OPS</strong></span>
+                </div>
+            </div>
+
+            <div id="arena-screen" class="space-y-6">
+                <div class="bg-black/95 p-6 border-2 border-[#00f0ff]/40 relative">
+                    <div class="flex justify-between items-center mb-3 text-xs font-mono-tech font-bold">
+                        <span id="ticket-severity" class="px-2.5 py-0.5 bg-[#ff0055]/20 text-[#ff0055] border border-[#ff0055]/50">[ P1 CRITICAL BREACH ]</span>
+                        <span id="ticket-origin" class="text-gray-400">SOURCE: Merchant Gateway API</span>
+                    </div>
+                    <p id="ticket-prompt" class="font-mono-tech text-sm md:text-base text-gray-200 leading-relaxed mb-6">
+                        "ALERT: 45,000 merchants report HTTP 401 Unauthorized responses on order webhooks following a security key rotation. Deploy immediate protocol."
+                    </p>
+                    <div id="weapon-buttons" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                <div id="battle-feedback" class="hidden p-4 font-mono-tech text-xs border-2"></div>
             </div>
         </section>
 
-        <section id="certifications">
-            <h2 class="text-3xl font-bold mb-10">Certifications & Badges</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" class="w-12 h-12 mb-4 grayscale hover:grayscale-0 transition" alt="AWS">
-                    <p class="text-xs font-bold">AWS Foundational</p>
-                    <p class="text-[10px] opacity-50">Skill Builder Badge</p>
+        <!-- TRAVEL DECK & GLOBETROTTING EXPEDITION -->
+        <section id="expedition" class="cp-panel clip-cp p-6 md:p-10 relative">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b-2 border-[#fee12b]/30 pb-6 gap-4">
+                <div>
+                    <span class="font-orbitron text-xs text-[#fee12b] uppercase tracking-widest">// UPCOMING EXPEDITION MODULE</span>
+                    <h2 class="font-orbitron text-2xl md:text-3xl font-black text-white mt-1 neon-yellow">GLOBAL TRAVEL & EXPEDITION RADAR</h2>
+                    <p class="text-xs text-gray-400 font-mono-tech mt-1">Merging technical remote operations with international exploration and off-grid roaming.</p>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i data-lucide="shield-check" class="w-12 h-12 mb-4 text-indigo-400"></i>
-                    <p class="text-xs font-bold">Agile Scrum Master</p>
-                    <p class="text-[10px] opacity-50">Certification</p>
+                <span class="bg-[#fee12b]/10 text-[#fee12b] border border-[#fee12b]/40 text-xs font-mono-tech px-3 py-1 self-start font-bold">
+                    EXPEDITION: STAGE 1 READY
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-black/75 p-6 border-2 border-[#fee12b]/40 hover:border-[#fee12b] transition group">
+                    <div class="flex justify-between items-center mb-4">
+                        <i data-lucide="mountain" class="w-6 h-6 text-[#fee12b] group-hover:scale-110 transition"></i>
+                        <span class="font-mono-tech text-[10px] text-gray-400 uppercase">Sector A1</span>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-lg text-white mb-2">Himalayan Ridge</h3>
+                    <p class="font-mono-tech text-xs text-gray-400 leading-relaxed mb-4">
+                        High-altitude trekking, satellite comms testing, and rugged terrain photography.
+                    </p>
+                    <div class="flex items-center justify-between font-mono-tech text-[11px] text-[#fee12b] pt-3 border-t border-[#fee12b]/20 font-bold">
+                        <span>Target: 2026/2027</span>
+                        <span>Elevation: 4,000m+</span>
+                    </div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i data-lucide="bar-chart" class="w-12 h-12 mb-4 text-indigo-400"></i>
-                    <p class="text-xs font-bold">Datadog Foundation</p>
-                    <p class="text-[10px] opacity-50">Certification</p>
+
+                <div class="bg-black/75 p-6 border-2 border-[#00f0ff]/40 hover:border-[#00f0ff] transition group">
+                    <div class="flex justify-between items-center mb-4">
+                        <i data-lucide="globe-2" class="w-6 h-6 text-[#00f0ff] group-hover:scale-110 transition"></i>
+                        <span class="font-mono-tech text-[10px] text-gray-400 uppercase">Sector B2</span>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-lg text-white mb-2">Southeast Asian Hubs</h3>
+                    <p class="font-mono-tech text-xs text-gray-400 leading-relaxed mb-4">
+                        Nomad tech cafes across Thailand & Vietnam while sustaining remote SaaS support workflows.
+                    </p>
+                    <div class="flex items-center justify-between font-mono-tech text-[11px] text-[#00f0ff] pt-3 border-t border-[#00f0ff]/20 font-bold">
+                        <span>Route: Mapped</span>
+                        <span>Mode: Remote Sync</span>
+                    </div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i data-lucide="layout" class="w-12 h-12 mb-4 text-indigo-400"></i>
-                    <p class="text-xs font-bold">JIRA Management</p>
-                    <p class="text-[10px] opacity-50">Atlassian Certified</p>
+
+                <div class="bg-black/75 p-6 border-2 border-[#ff0055]/40 hover:border-[#ff0055] transition group">
+                    <div class="flex justify-between items-center mb-4">
+                        <i data-lucide="compass" class="w-6 h-6 text-[#ff0055] group-hover:scale-110 transition"></i>
+                        <span class="font-mono-tech text-[10px] text-gray-400 uppercase">Sector C3</span>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-lg text-white mb-2">Coastal Exploration</h3>
+                    <p class="font-mono-tech text-xs text-gray-400 leading-relaxed mb-4">
+                        Experiencing regional food-tech ecosystems, ocean coastlines, and travel logging.
+                    </p>
+                    <div class="flex items-center justify-between font-mono-tech text-[11px] text-[#ff0055] pt-3 border-t border-[#ff0055]/20 font-bold">
+                        <span>Status: Ongoing Hobby</span>
+                        <span>Passion: 100%</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="research" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="glass-card p-10 rounded-3xl border-indigo-500/20">
-                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                    <i data-lucide="award" class="text-indigo-400"></i> Achievements
-                </h2>
-                <ul class="space-y-4 text-sm opacity-70">
-                    <li class="flex gap-3">
-                        <span class="text-indigo-400 font-bold">•</span>
-                        <span>Improved integration success by 30% for 80+ enterprise fleet stakeholders.</span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-indigo-400 font-bold">•</span>
-                        <span>Maintained zero SLA breaches across post-production incident management.</span>
-                    </li>
-                    <li class="flex gap-3">
-                        <span class="text-indigo-400 font-bold">•</span>
-                        <span>Reduced global ticket volume by 40% through optimized technical user guides.</span>
-                    </li>
-                </ul>
+        <!-- CYBER ARSENAL (SKILLS) -->
+        <section id="arsenal" class="space-y-6">
+            <div class="border-b-2 border-[#00f0ff]/30 pb-4">
+                <span class="font-orbitron text-xs text-[#00f0ff] uppercase tracking-widest">// CAPABILITY MATRIX</span>
+                <h2 class="font-orbitron text-2xl font-black text-white mt-1">CYBERNETIC ARSENAL & TOOLING</h2>
             </div>
 
-            <div class="glass-card p-10 rounded-3xl border-indigo-500/20">
-                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                    <i data-lucide="flask-conical" class="text-indigo-400"></i> Active Research
-                </h2>
-                <span class="text-indigo-400 font-mono text-xs uppercase tracking-widest">GEE & CNN</span>
-                <h3 class="text-lg font-bold mt-2">Multi-Modal Data Fusion for SOC Mapping</h3>
-                <p class="opacity-60 mt-4 text-sm leading-relaxed">
-                    Developing a hybrid dMRV framework using Google Earth Engine and CNN architectures to automate environmental risk reporting.
-                </p>
-                <a href="https://github.com/Shaheen-704" target="_blank" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo-400 hover:underline">
-                    View on GitHub <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="cp-panel p-6 clip-cp space-y-4">
+                    <div class="flex items-center gap-3 text-[#00f0ff]">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                        <h3 class="font-orbitron font-bold text-base text-white">Core Engineering</h3>
+                    </div>
+                    <p class="font-mono-tech text-xs text-gray-400">Deep source-code inspection and HTTP payload debugging.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2.5 py-1 bg-[#00f0ff]/10 text-[#00f0ff] font-mono-tech text-xs border border-[#00f0ff]/40 font-bold">React</span>
+                        <span class="px-2.5 py-1 bg-[#00f0ff]/10 text-[#00f0ff] font-mono-tech text-xs border border-[#00f0ff]/40 font-bold">Node.js</span>
+                        <span class="px-2.5 py-1 bg-[#00f0ff]/10 text-[#00f0ff] font-mono-tech text-xs border border-[#00f0ff]/40 font-bold">REST APIs</span>
+                        <span class="px-2.5 py-1 bg-[#00f0ff]/10 text-[#00f0ff] font-mono-tech text-xs border border-[#00f0ff]/40 font-bold">Webhooks</span>
+                        <span class="px-2.5 py-1 bg-[#00f0ff]/10 text-[#00f0ff] font-mono-tech text-xs border border-[#00f0ff]/40 font-bold">OAuth</span>
+                    </div>
+                </div>
+
+                <div class="cp-panel p-6 clip-cp space-y-4">
+                    <div class="flex items-center gap-3 text-[#fee12b]">
+                        <i data-lucide="radar" class="w-6 h-6"></i>
+                        <h3 class="font-orbitron font-bold text-base text-white">Observability Grid</h3>
+                    </div>
+                    <p class="font-mono-tech text-xs text-gray-400">Real-time log telemetry and proactive system health monitors.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2.5 py-1 bg-[#fee12b]/10 text-[#fee12b] font-mono-tech text-xs border border-[#fee12b]/40 font-bold">Kibana Logs</span>
+                        <span class="px-2.5 py-1 bg-[#fee12b]/10 text-[#fee12b] font-mono-tech text-xs border border-[#fee12b]/40 font-bold">Datadog</span>
+                        <span class="px-2.5 py-1 bg-[#fee12b]/10 text-[#fee12b] font-mono-tech text-xs border border-[#fee12b]/40 font-bold">Postman / curl</span>
+                        <span class="px-2.5 py-1 bg-[#fee12b]/10 text-[#fee12b] font-mono-tech text-xs border border-[#fee12b]/40 font-bold">SQL Queries</span>
+                    </div>
+                </div>
+
+                <div class="cp-panel p-6 clip-cp space-y-4">
+                    <div class="flex items-center gap-3 text-[#ff0055]">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        <h3 class="font-orbitron font-bold text-base text-white">Ops & Escalations</h3>
+                    </div>
+                    <p class="font-mono-tech text-xs text-gray-400">Ticketing architectures, SLA enforcement, and runbook authoring.</p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="px-2.5 py-1 bg-[#ff0055]/10 text-[#ff0055] font-mono-tech text-xs border border-[#ff0055]/40 font-bold">Zendesk / Freshdesk</span>
+                        <span class="px-2.5 py-1 bg-[#ff0055]/10 text-[#ff0055] font-mono-tech text-xs border border-[#ff0055]/40 font-bold">Jira / Salesforce</span>
+                        <span class="px-2.5 py-1 bg-[#ff0055]/10 text-[#ff0055] font-mono-tech text-xs border border-[#ff0055]/40 font-bold">Runbooks</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION LOGS (EXPERIENCE) -->
+        <section id="logs" class="space-y-8">
+            <div class="border-b-2 border-[#7000ff]/30 pb-4">
+                <span class="font-orbitron text-xs text-[#7000ff] uppercase tracking-widest">// RECORDED TIMELINE</span>
+                <h2 class="font-orbitron text-2xl font-black text-white mt-1">MISSION LOGS (EXPERIENCE)</h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- UrbanPiper -->
+                <div class="cp-panel p-8 clip-cp relative border-l-4 border-l-[#00f0ff]">
+                    <div class="absolute top-0 right-0 bg-[#00f0ff]/20 text-[#00f0ff] font-orbitron font-bold text-[10px] px-3 py-1 border-b border-l border-[#00f0ff]/50">ACTIVE DEPLOYMENT</div>
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4 gap-2">
+                        <div>
+                            <h3 class="font-orbitron font-black text-2xl text-white">UrbanPiper</h3>
+                            <p class="text-[#00f0ff] font-mono-tech text-xs mt-1">Product Support Specialist | May 2026 – Present</p>
+                        </div>
+                        <span class="font-mono-tech text-xs text-gray-400">Bengaluru, India</span>
+                    </div>
+                    <ul class="font-mono-tech text-xs text-gray-300 space-y-2.5 ml-4 list-disc">
+                        <li>Provide high-empathy, real-time technical support for 45,000+ merchants, diagnosing API integrations and webhooks.</li>
+                        <li>Constructed custom Kibana dashboards to monitor real-time merchant health and proactive error rates.</li>
+                        <li>Collaborate closely with Engineering teams to investigate P0-P4 issues and reproduce complex edge cases.</li>
+                        <li>Author standardized internal runbooks and playbooks to accelerate cross-team resolution times.</li>
+                    </ul>
+                </div>
+
+                <!-- Ford Pro -->
+                <div class="cp-panel p-8 clip-cp border-l-4 border-l-[#fee12b]">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4 gap-2">
+                        <div>
+                            <h3 class="font-orbitron font-black text-2xl text-white">Ford Pro</h3>
+                            <p class="text-[#fee12b] font-mono-tech text-xs mt-1">Customer Success Associate | Jan 2023 – Jan 2025</p>
+                        </div>
+                        <span class="font-mono-tech text-xs text-gray-400">Pune, India</span>
+                    </div>
+                    <ul class="font-mono-tech text-xs text-gray-300 space-y-2.5 ml-4 list-disc">
+                        <li>Streamlined data onboarding for 80+ enterprise stakeholders, driving a 30% increase in integration success.</li>
+                        <li>Deployed Datadog monitoring arrays to maintain 99.9% system reliability across fleet platforms.</li>
+                        <li>Purged 40% of repetitive support tickets by publishing 14 technical user guides and runbooks.</li>
+                    </ul>
+                </div>
+
+                <!-- Vymo -->
+                <div class="cp-panel p-8 clip-cp border-l-4 border-l-[#ff0055]">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4 gap-2">
+                        <div>
+                            <h3 class="font-orbitron font-black text-2xl text-white">Vymo</h3>
+                            <p class="text-[#ff0055] font-mono-tech text-xs mt-1">Technical Production Support Engineer | Aug 2021 – Dec 2022</p>
+                        </div>
+                        <span class="font-mono-tech text-xs text-gray-400">Bangalore, India</span>
+                    </div>
+                    <ul class="font-mono-tech text-xs text-gray-300 space-y-2.5 ml-4 list-disc">
+                        <li>Exterminated 130+ post-production fintech incidents using targeted SQL queries and browser dev tools.</li>
+                        <li>Maintained 100% SLA adherence by running weekly scrum triage briefings and optimizing task queues.</li>
+                    </ul>
+                </div>
+
+                <!-- Amazon -->
+                <div class="cp-panel p-8 clip-cp border-l-4 border-l-[#39ff14]">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4 gap-2">
+                        <div>
+                            <h3 class="font-orbitron font-black text-2xl text-white">Amazon</h3>
+                            <p class="text-[#39ff14] font-mono-tech text-xs mt-1">Support Associate | Jun 2020 – Jul 2021</p>
+                        </div>
+                        <span class="font-mono-tech text-xs text-gray-400">Pune, India</span>
+                    </div>
+                    <ul class="font-mono-tech text-xs text-gray-300 space-y-2.5 ml-4 list-disc">
+                        <li>Achieved 95% First-Contact Resolution (FCR) with a 98% response time SLA under maximum volume.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSMISSION TERMINAL -->
+        <section id="contact" class="cp-panel clip-cp p-8 md:p-12 text-center relative overflow-hidden">
+            <span class="font-orbitron text-xs text-[#fee12b] uppercase tracking-widest">// ESTABLISH TRANSMISSION</span>
+            <h2 class="font-orbitron text-3xl md:text-4xl font-black text-white mt-2 mb-4 neon-yellow">READY TO DEPLOY ME?</h2>
+            <p class="font-mono-tech text-xs text-gray-300 max-w-lg mx-auto mb-8 leading-relaxed">
+                Looking for an expert Product Support Engineer for high-growth SaaS, Fintech, or Restaurant-Tech platforms? Let's connect:
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:shaheen.cob19@gmail.com" class="clip-btn bg-[#00f0ff] hover:bg-[#00f0ff]/80 text-black font-orbitron font-black text-xs uppercase px-6 py-4 transition flex items-center gap-2 shadow-[0_0_20px_rgba(0,240,255,0.6)]">
+                    <i data-lucide="mail" class="w-4 h-4"></i> shaheen.cob19@gmail.com
+                </a>
+                <a href="https://github.com/Shaheen-704" target="_blank" class="clip-btn bg-[#fee12b]/20 hover:bg-[#fee12b]/40 text-[#fee12b] border border-[#fee12b] font-orbitron font-bold text-xs uppercase px-6 py-4 transition flex items-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i> GitHub Profile
+                </a>
+                <a href="https://www.linkedin.com/in/shaheen-haque-97ba901a5/" target="_blank" class="clip-btn bg-[#7000ff]/30 hover:bg-[#7000ff]/60 text-white border border-[#7000ff] font-orbitron font-bold text-xs uppercase px-6 py-4 transition flex items-center gap-2">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile
                 </a>
             </div>
         </section>
 
-        <section id="experience">
-            <h2 class="text-3xl font-bold mb-10">Professional Journey</h2>
-            <div class="space-y-12">
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h4 class="text-2xl font-bold">Ford Pro</h4>
-                            <p class="text-indigo-400 font-medium">Customer Success Associate | 2023 - 2025</p>
-                        </div>
-                        <span class="bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full text-xs font-bold uppercase"></span>
-                    </div>
-                    <ul class="text-sm opacity-70 space-y-3 ml-4 list-disc">
-                        <li>Managed technical integrations for fleet software, maintaining 99.9% system reliability via Datadog.</li>
-                        <li>Helped in automating onboarding pipelines, reducing manual effort and boosting success rates by 30%.</li>
-                        <li>Authored technical documentation that decreased support overhead by 40% globally.</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h4 class="text-2xl font-bold">Vymo</h4>
-                            <p class="text-indigo-400 font-medium">Technical Production Support Engineer | 2021 - 2022</p>
-                        </div>
-                    </div>
-                    <ul class="text-sm opacity-70 space-y-3 ml-4 list-disc">
-                        <li>Resolved 130+ post-production incidents in Fintech environments with 100% SLA adherence.</li>
-                        <li>Optimized production task prioritization by leading weekly cross-functional scrum calls.</li>
-                        <li>Provided critical triage and escalation for platform-wide infrastructure requests.</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card p-8 rounded-3xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h4 class="text-2xl font-bold">Amazon</h4>
-                            <p class="text-indigo-400 font-medium">Support Associate | 2020 - 2021</p>
-                        </div>
-                    </div>
-                    <ul class="text-sm opacity-70 space-y-3 ml-4 list-disc">
-                        <li>Boosted response speed by 50% for escalated high-priority regional tickets.</li>
-                        <li>Achieved a 95% first-contact resolution rate with a 90% customer satisfaction score.</li>
-                        <li>Managed high-volume service requests while maintaining a 98% response time SLA.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <footer class="max-w-6xl mx-auto py-16 text-center border-t border-indigo-500/10 mt-20">
-        <div class="flex justify-center gap-8 mb-6 opacity-60 text-sm">
-            <a href="https://github.com/Shaheen-704" target="_blank" class="hover:text-indigo-400">GitHub</a>
-            <a href="https://www.linkedin.com/in/shaheen-haque-97ba901a5/" target="_blank" class="hover:text-indigo-400">LinkedIn</a>
-            <a href="mailto:shaheen.cob19@gmail.com" class="hover:text-indigo-400">Email</a>
+    <!-- BOTTOM 2050 HUD FOOTER -->
+    <footer class="fixed bottom-0 left-0 w-full bg-[#020205]/95 border-t-2 border-[#ff0055]/40 p-3 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 font-mono-tech text-xs font-bold">
+            <div class="flex items-center gap-4">
+                <span class="text-gray-400 hidden sm:inline">SECTOR:</span>
+                <span class="text-[#00f0ff]">12.9716° N, 77.5946° E [BENGALURU]</span>
+            </div>
+            <div class="text-center hidden md:block text-gray-500 text-[10px]">
+                © 2026 SHAHEEN HAQUE // CP2050 SYSTEM GRID SYNCHRONIZED
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-gray-400 hidden sm:inline">SLA TARGET:</span>
+                <span class="text-[#39ff14]">100% PERFECT</span>
+            </div>
         </div>
-        <p class="opacity-30 text-xs uppercase tracking-widest">2026 Shaheen Haque &bull; Pune, India</p>
     </footer>
 
+    <!-- INTERACTIVE GAME & AUDIO LOGIC SCRIPT -->
     <script>
         lucide.createIcons();
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const body = document.body;
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-            themeIcon.setAttribute('data-lucide', isLight ? 'sun' : 'moon');
+        // Web Audio Synthesizer (Cyberpunk 2050 Bleeps)
+        let cpAudioActive = false;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playCpBeep(freq, type = 'sawtooth', duration = 0.12) {
+            if (!cpAudioActive) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function toggleCpAudio() {
+            cpAudioActive = !cpAudioActive;
+            const text = document.getElementById('sound-text');
+            text.textContent = cpAudioActive ? "AUDIO: ON" : "AUDIO: OFF";
+            if (cpAudioActive) {
+                playCpBeep(700, 'square', 0.2);
+            }
+        }
+
+        // Triage Mini-Game Scenarios
+        const scenarios = [
+            {
+                severity: "[ P1 CRITICAL BREACH ]",
+                origin: "SOURCE: Merchant Gateway API",
+                prompt: "ALERT: 45,000 merchants report HTTP 401 Unauthorized responses on order webhooks following a security key rotation. Deploy immediate protocol.",
+                choices: [
+                    { text: "INSPECT OAUTH BEARER HEADERS & TOKENS VIA POSTMAN", correct: true, log: "OPTIMAL PROTOCOL! Expired token header isolated and patched instantly." },
+                    { text: "REBOOT CLUSTER POWER GRIDS BLINDLY", correct: false, log: "CRITICAL FAILURE! Power reset dropped 3,000 live order streams." }
+                ]
+            },
+            {
+                severity: "[ P2 LATENCY SURGE ]",
+                origin: "SOURCE: Kibana Telemetry Logs",
+                prompt: "SURGE ALERT: Merchant dashboard response time jumped to 8,000ms during peak lunch traffic hours. What is your action?",
+                choices: [
+                    { text: "ANALYZE KIBANA SLOW-QUERY LOGS & HTTP PAYLOADS", correct: true, log: "TARGET NEUTRALIZED! Unindexed SQL query isolated and escalated." },
+                    { text: "SEND AN APOLOGY HOLOGRAM TO MERCHANTS", correct: false, log: "INEFFECTIVE! SLA breached while waiting for replies." }
+                ]
+            },
+            {
+                severity: "[ P3 TICKET TSUNAMI ]",
+                origin: "SOURCE: Support Queue Array",
+                prompt: "RECURRING PATTERN: 50+ daily tickets asking identical questions on POS menu sync configuration. What is the permanent fix?",
+                choices: [
+                    { text: "AUTHOR RUNBOOK & VIDEO HELP CENTER GUIDE", correct: true, log: "TACTICAL WIN! Ticket deflection reduced incoming volume by 40%." },
+                    { text: "DELETE SUPPORT INBOX PERMANENTLY", correct: false, log: "SYSTEM CRASH! Unanswered tickets triggered automated alarms." }
+                ]
+            }
+        ];
+
+        let currentScenario = 0;
+        let opsScore = 0;
+
+        const ticketSeverityEl = document.getElementById('ticket-severity');
+        const ticketOriginEl = document.getElementById('ticket-origin');
+        const ticketPromptEl = document.getElementById('ticket-prompt');
+        const weaponButtonsEl = document.getElementById('weapon-buttons');
+        const battleFeedbackEl = document.getElementById('battle-feedback');
+        const gameScoreEl = document.getElementById('game-score');
+
+        function loadScenario() {
+            if (currentScenario >= scenarios.length) {
+                ticketSeverityEl.textContent = "[ SECTOR SECURED ]";
+                ticketOriginEl.textContent = "STATUS: All Systems Operational";
+                ticketPromptEl.textContent = "MISSION COMPLETE! You successfully triaged all SaaS & API incidents with zero SLA breaches!";
+                weaponButtonsEl.innerHTML = `<button onclick="resetGame()" class="clip-btn bg-[#00f0ff] text-black font-orbitron font-black text-xs uppercase px-6 py-3 col-span-2 shadow-[0_0_15px_rgba(0,240,255,0.5)]">REPLAY ARENA</button>`;
+                battleFeedbackEl.classList.add('hidden');
+                playCpBeep(880, 'triangle', 0.4);
+                return;
+            }
+
+            const sc = scenarios[currentScenario];
+            ticketSeverityEl.textContent = sc.severity;
+            ticketOriginEl.textContent = sc.origin;
+            ticketPromptEl.textContent = `"${sc.prompt}"`;
+            battleFeedbackEl.classList.add('hidden');
+
+            weaponButtonsEl.innerHTML = '';
+            sc.choices.forEach(c => {
+                const btn = document.createElement('button');
+                btn.className = "clip-btn bg-black/90 hover:bg-[#00f0ff]/15 border-2 border-[#00f0ff]/40 p-4 text-left font-mono-tech text-xs text-gray-200 transition flex items-center justify-between group font-bold";
+                btn.innerHTML = `<span>➔ ${c.text}</span> <i data-lucide="chevron-right" class="w-4 h-4 text-[#00f0ff] group-hover:translate-x-1 transition"></i>`;
+                btn.onclick = () => selectChoice(c.correct, c.log);
+                weaponButtonsEl.appendChild(btn);
+            });
             lucide.createIcons();
-        });
+        }
+
+        function selectChoice(isCorrect, logMsg) {
+            battleFeedbackEl.classList.remove('hidden');
+            if (isCorrect) {
+                playCpBeep(659.25, 'square', 0.15);
+                opsScore += 100;
+                gameScoreEl.textContent = opsScore + " OPS";
+                battleFeedbackEl.className = "p-4 font-mono-tech text-xs bg-[#39ff14]/10 text-[#39ff14] border-2 border-[#39ff14]/40 font-bold";
+                battleFeedbackEl.innerHTML = `<strong>✓ INCIDENT SOLVED:</strong> ${logMsg}`;
+                currentScenario++;
+                setTimeout(loadScenario, 3000);
+            } else {
+                playCpBeep(150, 'sawtooth', 0.3);
+                battleFeedbackEl.className = "p-4 font-mono-tech text-xs bg-[#ff0055]/10 text-[#ff0055] border-2 border-[#ff0055]/40 font-bold";
+                battleFeedbackEl.innerHTML = `<strong>✗ TACTICAL ERROR:</strong> ${logMsg}`;
+            }
+        }
+
+        function resetGame() {
+            currentScenario = 0;
+            opsScore = 0;
+            gameScoreEl.textContent = opsScore + " OPS";
+            loadScenario();
+        }
+
+        loadScenario();
     </script>
 </body>
 </html>
